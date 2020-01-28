@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <body>
     <form method="post" action=".">
+        {{ user_form.media }}
         {{ user_form.as_p }}
         {% csrf_token %}
         <input type="submit">

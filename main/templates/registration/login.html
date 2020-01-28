@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<body>
+    <form method="post" action=".">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit">
+        {% if form.errors %}
+            <p>
+                Your username and password didn't match.
+                Please try again.
+            </p>
+        {% else %}
+            <p>Please, use the above form to log-in If you don't have an account <a href="{% url 'main:register' %}">register here</a></p>
+        {% endif %}
+    </form>
+</body>

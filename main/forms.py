@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from main.models import News, HighlightedEvents
 import re
 from django.core.validators import RegexValidator
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from ckeditor.widgets import CKEditorWidget
 
 
 class LoginForm(forms.Form):
@@ -27,7 +29,7 @@ class UserRegistrationForm(forms.ModelForm):
                                  ],
                                  required=True)
     about = forms.CharField(label="About your organization",
-                            widget=forms.Textarea,
+                            widget=CKEditorWidget,
                             required=True)
 
     class Meta:
@@ -42,6 +44,8 @@ class UserRegistrationForm(forms.ModelForm):
 
 
 class NewsForm(forms.ModelForm):
+    news_details = forms.CharField(widget=CKEditorUploadingWidget())
+
     class Meta:
         model = News
-        fields = ('title', 'status', 'news_details', 'tags')
+        fields = ('title', 'status', 'tags')

@@ -3,6 +3,8 @@ from django.shortcuts import render, get_object_or_404, HttpResponse
 from main.forms import UserRegistrationForm, NewsForm
 from django.contrib.auth import authenticate, login
 from main.models import Profile
+from django.utils.text import slugify
+from django.contrib.auth.decorators import login_required
 
 
 def register(request):
@@ -18,7 +20,7 @@ def register(request):
             prof.ein_number = user_form.cleaned_data["ein_number"]
             prof.about = user_form.cleaned_data["about"]
             prof.save()
-            return HttpResponse("Registration done")
+            return HttpResponse("Registration Done")
     else:
         user_form = UserRegistrationForm()
     context = {
@@ -28,3 +30,28 @@ def register(request):
                   'main/register.html',
                   context=context
                   )
+
+
+@login_required
+def add_news(request):
+    if request.method == 'POST':
+        news_form = NewsForm(request.POST)
+        if news_form.is_valid():
+            new_news = news_form.save(commit=False)
+            new_news.organization = request.user
+            new_news.slug = slugify(news_form.cleaned_data['title'])
+            new_news.news_details = news_form.cleaned_data['news_details']
+            new_news.save()
+            return HttpResponse("News Item Saved")
+    else:
+        news_form = NewsForm()
+    context = {
+        'news_form': news_form
+    }
+    return render(request,
+                  'main/add_news.html',
+                  context=context
+                  )
+
+def base_check(request):
+    return render(request,'main/organization.html')
