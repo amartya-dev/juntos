@@ -4,11 +4,12 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from taggit.managers import TaggableManager
 from django.urls import reverse
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class Profile(models.Model):
     organization_user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    ein_number = models.IntegerField()
+    ein_number = models.CharField(max_length=10)
     name = models.CharField(max_length=250)
     about = models.TextField()
 
@@ -20,7 +21,7 @@ class HighlightedEvents(models.Model):
     event_start_time = models.TimeField()
     event_end_date = models.DateField()
     event_end_time = models.TimeField()
-    event_description = models.TextField()
+    event_description = RichTextUploadingField()
     event_link = models.URLField()
 
 
@@ -45,7 +46,7 @@ class News(models.Model):
     title = models.CharField(max_length=250)
     publish = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
-    news_details = models.TextField()
+    news_details = RichTextUploadingField()
     objects = models.Manager()
     published = PublishedManager()
     tags = TaggableManager()
