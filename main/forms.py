@@ -5,6 +5,7 @@ import re
 from django.core.validators import RegexValidator
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from ckeditor.widgets import CKEditorWidget
+from bootstrap_datepicker_plus import DatePickerInput
 
 
 class LoginForm(forms.Form):
@@ -44,8 +45,20 @@ class UserRegistrationForm(forms.ModelForm):
 
 
 class NewsForm(forms.ModelForm):
-    news_details = forms.CharField(widget=CKEditorUploadingWidget())
 
     class Meta:
         model = News
-        fields = ('title', 'status', 'tags')
+        fields = ('news_details',)
+        widgets = {
+            'news_details': CKEditorUploadingWidget()
+        }
+
+
+class EventForm(forms.ModelForm):
+
+    class Meta:
+        model = HighlightedEvents
+        fields = ('event_description',)
+        widgets = {
+            'event_description': CKEditorUploadingWidget()
+        }

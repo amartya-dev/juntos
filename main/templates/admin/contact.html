@@ -1,0 +1,57 @@
+{% extends 'base_admin.html' %}
+{% block 'contact' %} class = "active" {% endblock %}
+{% block 'messages' %} class = "active" {% endblock %}
+{% block 'title' %}Contact{% endblock %}
+{% load staticfiles %}
+{% load static %}
+<!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+<!--main content start-->
+{% block 'content' %}
+<section id="main-content">
+  <section class="wrapper">
+    <h3><i class="fa fa-angle-right"></i> Contacts</h3>
+    <div class="row mb">
+      <!-- page start-->
+      <div class="content-panel">
+        <div class="adv-table">
+          <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="my_table">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Subject</th>
+              <th>Message</th>
+              <th>Delete?</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for contact in contacts %}
+            <tr>
+              <td>{{ contact.name }}</td>
+              <td>{{ contact.email }}</td>
+              <td>{{ contact.subject }}</td>
+              <td>{{ contact.message }}</td>
+              <td>
+                <form method = "post" action = ".">
+                  <input type = "text" name = "contact_id" hidden value = "{{ contact.id }}">
+                  {% csrf_token %}
+                  <input type = "submit" value = "delete" >
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- page end-->
+    </div>
+    <!-- /row -->
+  </section>
+  <!-- /wrapper -->
+</section>
+<!-- /MAIN CONTENT -->
+<!--main content end-->
+{% endblock %}

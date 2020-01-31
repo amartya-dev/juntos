@@ -1,0 +1,67 @@
+{% extends 'base_home.html' %}
+{% load static %}
+{% load staticfiles %}
+{% block 'title' %}Home{% endblock %}
+{% block 'content' %}
+<!-- s-content
+================================================== -->
+<section class="s-content s-content--top-padding s-content--narrow">
+
+    <div class="row narrow">
+        <div class="col-full s-content__header">
+            <h1 class="display-1 display-1--with-line-sep">Juntos - a step towards better future. </h1>
+            <p class="lead">
+                Homelessness is a mark of failure for communities in providing basic security.
+                Based on national reports, it’s estimated that no less than 150 million people, or about
+                2 percent of the world’s population, are homeless.
+                However, about 1.6 billion, more than 20 percent of the world’s population, may lack adequate
+                housing.. There is a need to address to this serious problem, this website provides a platform
+                to enlist all the organizations working for this cause.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-full s-content__main">
+            <p>
+                <img src=" {% static 'home/images/homeless.jpg' %} "
+                     srcse {% static 'home/t="imag' %} es/thumbs/about/about-2000.jpg 2000w,
+                images/thumbs/about/about-1000.jpg 1000w,
+                images/thumbs/about/about-500.jpg 500w"
+                sizes="(max-width: 2000px) 100vw, 2000px" alt="">
+            </p>
+
+            <h2>What we offer?</h2>
+            <h3>To Users</h3>
+            <p>
+                A platform to know about all the organizations working for this cause,
+                there are times wherein people are not able to know about the works of many such organizations.
+                This site functions as an aggregator of all such sites.
+            <h3>To Organizations</h3>
+            <p>
+            <ul>
+                <li> A platform to make a short web page about their organization  </li>
+                <li> A platform to inform about their news / events </li>
+                <li> A dashboard to monitor all the contact / volunteer etc. applications and thus expand. </li>
+            </p>
+
+            <hr>
+
+            <div class="row block-1-2 block-tab-full">
+                <div class="col-block">
+                    <h4 class="quarter-top-margin">Sign Up Now.</h4>
+                    <p>If you are an NGO working towards eradicating homelessness, <a href="{% url 'main:register' %}" >register</a> on our website following a few easy steps and get a link to your own page designed automatically for you which you can share for promotions / information etc..</p>
+                </div>
+
+                <div class="col-block">
+                    <h4 class="quarter-top-margin">Our Mission.</h4>
+                    <p>Several organizations are working toward eradicating homelessness and getting people off the streets. We aim at providing a solution to list such organizations, spreading awareness among the general public about the work these organizations are doing for a better community and make it accessible for citizens to contribute in terms of donations and ideas.</p>
+                </div>
+
+            </div>
+
+        </div> <!-- s-content__main -->
+    </div> <!-- end row -->
+
+</section> <!-- end s-content -->
+
+{% endblock %}

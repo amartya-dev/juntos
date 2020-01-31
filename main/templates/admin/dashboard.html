@@ -1,0 +1,25 @@
+{% extends 'base_admin.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block 'dashboard' %}class="active"{% endblock %}
+{% block 'org_name' %}{{ org_name }}{% endblock %}
+{% block 'title' %}{{ org_name }}{% endblock %}
+{% block 'content' %}
+<!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+<!--main content start-->
+<section id="main-content">
+  <section class="wrapper site-min-height">
+    <h3><i class="fa fa-angle-right"></i> Dashboard</h3>
+    <div class="row mt">
+      <p class="col-lg-12">
+        Welcome to your dashboard !! You can share this <a target="_blank" href="{{ org.get_absolute_url }}">link</a> to promote your website</p>
+      </div>
+    </div>
+  </section>
+  <!-- /wrapper -->
+</section>
+<!-- /MAIN CONTENT -->
+<!--main content end-->
+{% endblock %}

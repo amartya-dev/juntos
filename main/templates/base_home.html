@@ -1,0 +1,128 @@
+{% load static %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>{% block 'title' %}{% endblock %} | JUNTOS</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href=" {% static 'home/css/base.css' %} ">
+    <link rel="stylesheet" href=" {% static 'home/css/vendor.css' %} ">
+    <link rel="stylesheet" href=" {% static 'home/css/main.css' %} ">
+
+    <!-- script
+    ================================================== -->
+    <script src=" {% static 'home/js/modernizr.js' %} "></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href=" {% static 'home/favicon.ico' %} " type="image/x-icon">
+    <link rel="icon" href=" {% static 'home/favicon.ico' %} " type="image/x-icon">
+
+</head>
+
+<body id="top">
+
+<!-- preloader
+================================================== -->
+<div id="preloader">
+    <div id="loader" class="dots-fade">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+
+<!-- header
+================================================== -->
+<header class="s-header header">
+
+    <div class="header__logo">
+        <a class="logo" href="{% url 'main:index' %}">
+            <img src=" {% static 'home/images/logo.png' %} " alt="Homepage">
+        </a>
+    </div> <!-- end header__logo -->
+
+
+    <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+    <nav class="header__nav-wrap">
+
+        <h2 class="header__nav-heading h6">Navigate to</h2>
+
+        <ul class="header__nav">
+            <li class="current"><a href="{% url 'main:index' %}" title="">Home</a></li>
+            <li><a href="#" title="">Blog</a></li>
+            <li><a href="{% url 'main:organizations' %}" >Organizations</a></li>
+            <li><a href=" {% url 'main:register' %} " >Signup</a></li>
+            <li><a href=" {% url 'main:login' %} " >Login</a></li>
+            {% if user.is_authenticated %}<li><a href=" {% url 'main:dashboard' %} " >Dashboard</a></li>{% endif %}
+        </ul> <!-- end header__nav -->
+
+        <a href=" {% static 'home/#0' %} " title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+
+    </nav> <!-- end header__nav-wrap -->
+
+</header> <!-- s-header -->
+{% block 'content' %}
+{% endblock %}
+<!-- s-footer
+    ================================================== -->
+<footer class="s-footer">
+
+    <div class="s-footer__main">
+        <div class="row">
+
+            <div class="col-six tab-full s-footer__about">
+
+                <h4>About Us</h4>
+
+                <p>Efforts to tackle homelessness through increased state involvement in the housing sector have not been able to yield the intended results. This strategy amounts to simply throwing money at the problem.
+
+Reasons for homelessness include shortages of affordable housing, privatization of civic services, investment speculation in housing, unplanned and rapid urbanization, as well as poverty, unemployment, and family breakdown.</p>
+
+            </div> <!-- end s-footer__about -->
+
+            <div class="col-six tab-full s-footer__subscribe">
+
+                <h4>Contact details</h4>
+
+                <p>Contact us for any suggestions / improvements.</p>
+
+                <div class="subscribe-form">
+                    Email : abc@defg.com
+                </div>
+
+            </div> <!-- end s-footer__subscribe -->
+
+        </div>
+    </div> <!-- end s-footer__main -->
+
+
+    <div class="go-top">
+        <a class="smoothscroll" title="Back to Top" href="#top"></a>
+    </div>
+
+</footer> <!-- end s-footer -->
+
+
+<!-- Java Script
+================================================== -->
+<script src=" {% static 'home/js/jquery-3.2.1.min.js' %} "></script>
+<script src=" {% static 'home/js/plugins.js' %} "></script>
+<script src=" {% static 'home/js/main.js' %} "></script>
+
+</body>
+
+</html>

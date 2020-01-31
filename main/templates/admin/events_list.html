@@ -1,0 +1,56 @@
+{% extends 'base_admin.html' %}
+{% block 'view_events' %}class="active"{% endblock %}
+{% block 'events' %}class="active"{% endblock %}
+{% block 'title' %}Events{% endblock %}
+
+{% load static %}
+{% load staticfiles %}
+<!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+<!--main content start-->
+{% block 'content' %}
+<section id="main-content">
+    <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> Listed Events </h3>
+        <div class="row mb">
+            <!-- page start-->
+            <div class="content-panel">
+                <div class="adv-table">
+                    <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="my_table">
+                        <thead>
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Event Start Date</th>
+                            <th>Event End Date</th>
+                            <th>Delete?</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for event in events %}
+                        <tr>
+                            <td>{{ event.event_name }}</td>
+                            <td>{{ event.event_start_date }}</td>
+                            <td>{{ event.event_end_date }}</td>
+                            <td>
+                                <form method="post", action=".">
+                                    <input type="text" name="event_id" hidden value="{{ event.id }}">
+                                    {% csrf_token %}
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- page end-->
+        </div>
+        <!-- /row -->
+    </section>
+    <!-- /wrapper -->
+</section>
+<!-- /MAIN CONTENT -->
+<!--main content end-->
+{% endblock %}

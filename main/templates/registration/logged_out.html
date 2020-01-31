@@ -1,0 +1,12 @@
+{% extends 'base_home.html' %}
+{% block 'title' %}Logged out{% endblock %}
+{% block 'content' %}
+<section class="s-content s-content--top-padding">
+    <div class="row narrow">
+        <div class="col-full s-content__header" data-aos="fade-up">
+            <h1 class="display-1 display-1--with-line-sep">Logged Out!</h1>
+            <p class="lead">You have been successfully logged out <a href="{% url 'main:login' %}">Log In</a> again? </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

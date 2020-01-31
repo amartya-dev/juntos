@@ -10,25 +10,10 @@ from main.models import Subscribed
 
 
 def post_list(request, tag_slug=None):
-    if request.method == 'POST':
-        print("[INFO] Adding person to subscribed list")
-        already = list(Subscribed.objects.values_list('email_id'))
-        id_got = (request.POST.get("email_id"),)
-        if id_got not in already:
-            subscribe = "Subscribed Successfully"
-            subscription = Subscribed()
-            subscription.email_id = id_got
-            subscription.save()
-        else:
-            subscribe = "Already Subscribed"
-    else:
-        subscribe = False
+
     object_list = Post.published.all()
     tag = None
-    top_categories = Categories.objects.filter(featured=True)[:3]
-    all_tags = Tag.objects.all()
-    popular_posts = Post.objects.all().annotate(score=Count('comments')).order_by('-score')[:4]
-    print(popular_posts)
+    popular_posts = Post.objects.all().annotate(score=Count('comments')).order_by('-score')[:3]
     all_categories = Categories.objects.all()
     cat = request.GET.get('category')
     if cat:
@@ -39,7 +24,7 @@ def post_list(request, tag_slug=None):
         tag = get_object_or_404(Tag, slug=tag_slug)
         object_list = object_list.filter(tags__in=[tag])
 
-    paginator = Paginator(object_list, 3)  # 3 posts in each page
+    paginator = Paginator(object_list, 8)  # 8 posts in each page
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
@@ -51,17 +36,14 @@ def post_list(request, tag_slug=None):
         posts = paginator.page(paginator.num_pages)
 
     return render(request,
-                  'blog/post/list.html',
+                  'home/blog.html',
                   {'page': page,
                    'posts': posts,
-                   'top_categories': top_categories,
-                   'all_tags': all_tags,
                    'tag': tag,
                    'category': cat,
                    'popular_posts': popular_posts,
                    'all_categories': all_categories,
-                   'subscribe': subscribe,
-                   'page_name': 'blog', })
+                   })
 
 
 def post_detail(request, year, month, day, post):

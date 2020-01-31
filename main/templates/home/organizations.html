@@ -1,0 +1,49 @@
+{% extends 'base_home.html' %}
+{% load static %}
+{% load staticfiles %}
+{% block 'title' %}Organizations{% endblock %}
+{% block 'content' %}
+<!-- s-content
+================================================== -->
+<section class="s-content s-content--top-padding">
+
+    <div class="row narrow">
+        <div class="col-full s-content__header" data-aos="fade-up">
+            <h1 class="display-1 display-1--with-line-sep">Organizations</h1>
+            <p class="lead">Following are the organizations listed with us, feel free to <a href="{% url 'main:register'%}">Sign up</a> and get a spot here</p>
+        </div>
+    </div>
+
+    <div class="row entries-wrap add-top-padding wide">
+        <div class="entries">
+            {% for organization in organizations %}
+            <article class="col-block">
+
+                <div class="item-entry" data-aos="zoom-in">
+
+                    <div class="item-entry__text">
+                        <div class="item-entry__cat">
+                            <a href="  ">{{ organization.city }} , {{ organization.country }}</a>
+                        </div>
+
+                        <h1 class="item-entry__title"><a href="{{ organization.get_absolute_url }}">{{ organization.name }}.</a></h1>
+
+                        <div class="item-entry__date">
+                            {{ organization.organization_contact_email }}
+                        </div>
+                    </div>
+                </div> <!-- item-entry -->
+
+            </article> <!-- end article -->
+            {% endfor %}
+
+        </div> <!-- end entries -->
+    </div> <!-- end entries-wrap -->
+
+    <div class="row pagination-wrap">
+        {% include 'pagination.html' with page=organizations %}
+    </div>
+
+</section> <!-- end s-content -->
+
+{% endblock %}

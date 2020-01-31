@@ -1,0 +1,62 @@
+{% extends 'base_admin.html' %}
+{% block 'title' %} Add News {% endblock %}
+{% block 'add_news' %} class = "active" {% endblock %}
+{% block 'news' %} class = "active" {% endblock %}
+{% load staticfiles %}
+{% load static %}
+
+{% block 'content' %}
+<!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+<!--main content start-->
+<section id="main-content">
+  <section class="wrapper">
+    <h3><i class="fa fa-angle-right"></i> Add News</h3>
+    <div class="row mt">
+      <!--  DATE PICKERS -->
+      <div class="col-lg-12">
+        <div class="form-panel">
+          <form method = "post" action="." enctype="multipart/form-data" class="form-horizontal style-form">
+            <div class="form-group">
+              <label class="control-label col-md-3">News Title</label>
+              <div class="col-md-3 col-xs-11">
+                <input type="text" name = "title" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-3 col-xs-11">
+                {{ news_form.media }}
+                {{ news_form.as_p }}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">Input Image</label>
+              <div class="col-md-4">
+                <input name="news_image" type="file" class="default" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">Tags</label>
+              <div class="col-md-4">
+                <input type="text" name="tags" class="default" />
+                <span class="help-block">Enter Comma Separated Values for tags</span>
+              </div>
+            </div>
+            {% csrf_token %}
+            <div class="form-group">
+              <div class="col-md-4">
+                <input type="submit" value = "Add">
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- /form-panel -->
+      </div>
+      <!-- /col-lg-12 -->
+    </div>
+  </section>
+  <!-- /wrapper -->
+</section>
+<!-- /MAIN CONTENT -->
+{% endblock %}

@@ -1,16 +1,68 @@
+{% load static %}
+{% load staticfiles %}
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Juntos</title>
+
+    <!-- Favicons -->
+    <link href=" {% static 'admin/img/favicon.png' %} " rel="icon">
+    <link href=" {% static 'admin/img/apple-touch-icon.png' %} " rel="apple-touch-icon">
+
+    <!-- Bootstrap core CSS -->
+    <link href=" {% static 'admin/lib/bootstrap/css/bootstrap.min.css' %} " rel="stylesheet">
+    <!--external css-->
+    <link href=" {% static 'admin/lib/font-awesome/css/font-awesome.css' %} " rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href=" {% static 'admin/css/style.css' %} " rel="stylesheet">
+    <link href=" {% static 'admin/css/style-responsive.css' %} " rel="stylesheet">
+
+</head>
+
 <body>
-    <form method="post" action=".">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <input type="submit">
-        {% if form.errors %}
-            <p>
-                Your username and password didn't match.
-                Please try again.
-            </p>
-        {% else %}
-            <p>Please, use the above form to log-in If you don't have an account <a href="{% url 'main:register' %}">register here</a></p>
-        {% endif %}
-    </form>
+<!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+<div id="login-page">
+    <div class="container">
+        <form class="form-login" method="post" action=".">
+            <h2 class="form-login-heading">sign in now</h2>
+            <div class="login-wrap">
+                <input type="text" class="form-control" placeholder="User ID" autofocus="" name="username" required="" id="id_username">
+                <br>
+                <input type="password" class="form-control" placeholder="Password" name="password" required="" id="id_password"><br>
+                {% csrf_token %}
+                <button type="submit" class="btn btn-theme btn-block" ><i class="fa fa-lock"></i> SIGN IN</button>
+                <hr>
+                {% if form.errors %}
+                <div class="registration">
+                    Please verify your credentials and try again<br/>
+                </div>
+                {% else %}
+                <div class="registration">
+                    Don't have an account yet?<br/>
+                    <a class="" href="{% url 'main:register' %}">
+                        Create an account
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
+<!-- js placed at the end of the document so the pages load faster -->
+<script src=" {% static 'admin/lib/jquery/jquery.min.js' %} "></script>
+<script src=" {% static 'admin/lib/bootstrap/js/bootstrap.min.js' %} "></script>
+<!--BACKSTRETCH-->
+<!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+<script type="text/javascript" src=" {% static 'admin/lib/jquery.backstretch.min.js' %} "></script>
+<script>
+    $.backstretch("img/login-bg.jpg", {
+        speed: 500
+    });
+</script>
 </body>
+
+</html>

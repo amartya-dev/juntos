@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'taggit',
+    'django_social_share',
 ]
 
 MIDDLEWARE = [
@@ -61,10 +62,12 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.request',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -132,3 +135,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
+
+LOGIN_REDIRECT_URL = 'main:dashboard'
+LOGIN_URL = 'main:login'
+LOGOUT_URL = 'main:logout'
