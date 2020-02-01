@@ -1,4 +1,4 @@
-# juntos
+# juntos - Hacking Homelessness
 Hacking Homelessness Submission 
 
 The website is developed in django for theme : Contributing for a change for the hackathon Hacking Homelessness. 
