@@ -32,6 +32,13 @@ class UserRegistrationForm(forms.ModelForm):
     about = forms.CharField(label="About your organization",
                             widget=CKEditorWidget,
                             required=True)
+    organization_country = forms.CharField(max_length=50)
+    organization_city = forms.CharField(max_length=50)
+    organization_contact_email = forms.EmailField()
+    organization_mission = forms.CharField(widget=forms.Textarea)
+    organization_primary_objective1 = forms.CharField(max_length=200)
+    organization_primary_objective2 = forms.CharField(max_length=200)
+    organization_primary_objective3 = forms.CharField(max_length=200)
 
     class Meta:
         model = User

@@ -25,6 +25,13 @@ def register(request):
             prof.organization_slug = slugify(user_form.cleaned_data["organization_name"])
             prof.ein_number = user_form.cleaned_data["ein_number"]
             prof.about = user_form.cleaned_data["about"]
+            prof.organization_city = user_form.cleaned_data["organization_city"]
+            prof.organization_country = user_form.cleaned_data["organization_country"]
+            prof.organization_contact_email = user_form.cleaned_data["organization_contact_email"]
+            prof.organization_mission = user_form.cleaned_data["organization_mission"]
+            prof.organization_primary_objective1 = user_form.cleaned_data["organization_primary_objective1"]
+            prof.organization_primary_objective2 = user_form.cleaned_data["organization_primary_objective2"]
+            prof.organization_primary_objective3 = user_form.cleaned_data["organization_primary_objective3"]
             prof.save()
             return HttpResponse("Registration Done")
     else:
